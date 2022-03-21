@@ -4,22 +4,19 @@ import SwiperCore, { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 
-import tmdbApi, { category, movieType } from '../../../api/tmdbAip';
+import tmdbApi, { movieType } from '../../../api/tmdbAip';
 import HeroSlideItem from './HeroSlideItem/index';
 
+SwiperCore.use([Autoplay]);
+
 function HeroSlide() {
-  SwiperCore.use([Autoplay]);
-
   const [movieItems, setMovieItems] = useState([]);
-
-  const [trailerOpen, setTrailerOpen] = useState(false);
 
   useEffect(() => {
     const fetchMovies = async () => {
       const params = { page: 1 };
       try {
         const res = await tmdbApi.getMoviesList(movieType.popular, { params });
-        console.log(res);
 
         setMovieItems(res.results.slice(0, 4));
       } catch (error) {
@@ -39,8 +36,8 @@ function HeroSlide() {
 
         // autoplay={{ delay: 3000 }}
       >
-        {movieItems.map((item, i) => (
-          <SwiperSlide key={i}>
+        {movieItems.map((item) => (
+          <SwiperSlide key={item.id}>
             {({ isActive }) => <HeroSlideItem item={item} active={isActive} />}
           </SwiperSlide>
         ))}
