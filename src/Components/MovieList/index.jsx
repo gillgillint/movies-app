@@ -25,7 +25,15 @@ function MovieList({ category, type, id }) {
         res = await tmdbApi.similar(category, id);
       }
 
-      setItems(res.results.filter((e, i) => i !== 4));
+      setItems(
+        res.results.filter((e) => {
+          if (e.backdrop_path || e.poster_path) {
+            return e;
+          } else {
+            return;
+          }
+        })
+      );
     };
     getList();
   }, []);

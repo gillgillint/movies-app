@@ -18,4 +18,8 @@
   .section__header {
     @apply flex items-center justify-between;
   }
+
+  .page__header {
+    @apply pt-36 px-8 text-center mb-8;
+  }
 }

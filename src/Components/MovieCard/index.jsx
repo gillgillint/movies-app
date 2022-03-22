@@ -11,7 +11,7 @@ function MovieCard({ item, category }) {
     <Link to={link}>
       <Box
         className='hover:scale-105 hover:z-30 overflow-hidden duration-200 relative rounded-lg mb-4 '
-        sx={{ pb: '160%' }}
+        sx={{ pb: '148%' }}
       >
         <img
           src={bg}
